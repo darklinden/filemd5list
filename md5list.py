@@ -8,6 +8,9 @@ import time
 import shutil
 
 def file_is_ok(file_path, timestamp):
+    if file_path.find("files.txt") != -1 or file_path.find("update.txt") != -1:
+        return False
+
     fi = os.stat(file_path)
     if fi.st_mtime != timestamp:
         print(file_path + " is new")
@@ -32,7 +35,7 @@ def __main__():
         print("using md5list [src] [timestamp] to make md5 list")
         return
 
-    file_name = "updates.txt"
+    file_name = "files.txt"
     folder_path = sys.argv[1]
     if len(sys.argv) > 2:
         timestamp = int(sys.argv[2])
